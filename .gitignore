@@ -1,18 +1,77 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+# Dependency directories
+node_modules/
+.pnp/
+.pnp.js
+.yarn/install-state.gz
 
-# Other files and folders
-.settings/
+# Vite build output folder
+dist/
+# Optional: sometimes vite might output to 'build' too, uncomment if needed
+# build/
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# Vite cache directory
+.vite/
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# macOS specific
+.DS_Store
+*.AppleDouble
+
+# Windows specific
+Thumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw? # Vim swap files
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+# Exceptions for committed env templates
+# !.env.example
+# !.env.production
+
+# Coverage directory used by tools like Jest or Vitest
+coverage/
+*.lcov
+
+# TypeScript cache file
+*.tsbuildinfo
+
+# Optional: Test-related files specific to some runners
+# .nyc_output/
+
+# Optional: Cypress folders if you add Cypress tests later
+# cypress/videos/
+# cypress/screenshots/
+
+# Optional: Storybook build output if you add Storybook later
+# storybook-static/
+
+# Optional: Build files from other potential bundlers or tools
+# .parcel-cache/
+# .next/
+# out/
