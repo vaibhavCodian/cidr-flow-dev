@@ -1,0 +1,140 @@
+/* Keep react-resizable import */
+@import 'react-resizable/css/styles.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base body styles */
+body {
+  @apply font-sans antialiased bg-white text-gray-900 dark:bg-dark-primary dark:text-dark-text_primary;
+  overflow-y: scroll;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+/* Table Styles using standard table elements */
+@layer components {
+    .subnet-table {
+        @apply table-fixed border-collapse w-full mt-6 border dark:border-dark-border rounded-md shadow-md dark:shadow-md-dark;
+        @apply overflow-hidden;
+    }
+
+    /* Apply consistent border and height to all cells */
+    .subnet-table th, .subnet-table td {
+        @apply border border-gray-300 dark:border-dark-border;
+        @apply h-10 px-3 text-sm align-middle;
+        @apply overflow-hidden text-ellipsis whitespace-nowrap;
+    }
+
+    /* Header specific styles */
+    .subnet-table thead th.header-base { /* Base for all headers */
+         @apply text-left text-xs font-semibold uppercase tracking-wider relative;
+         @apply dark:bg-dark-tertiary dark:text-dark-text_secondary bg-gray-100 text-gray-600;
+         @apply p-0 align-middle; /* Padding in wrapper */
+         @apply border-b-2 dark:border-dark-border border-b-gray-300;
+         /* Remove left/right border from base, add back selectively */
+         /* @apply border-l-0 border-r-0; */
+    }
+    .th-content-wrapper {
+        @apply flex items-center h-full px-3 overflow-hidden text-ellipsis whitespace-nowrap;
+     }
+     /* Add left border to headers *except* the very first one */
+    .subnet-table thead th.header-base:not(:first-child) {
+          /* @apply border-l dark:border-l-dark-border border-l-gray-300; */
+          /* Using default cell border above instead */
+    }
+
+
+     /* Body Row Styles */
+     .subnet-table tbody tr {
+        @apply dark:bg-dark-secondary/10 bg-white;
+        @apply hover:dark:bg-dark-tertiary/50 hover:bg-gray-50/80;
+        transition: background-color 0.1s ease-in-out;
+    }
+    .subnet-table tbody tr:nth-child(even) {
+       @apply dark:bg-dark-secondary/30 bg-gray-50/50;
+    }
+
+
+    /* Cell specific content styles */
+    .subnet-table td {
+         @apply dark:text-dark-text_primary text-gray-700 font-mono;
+         @apply border-b dark:border-b-dark-border border-b-gray-300;
+         /* Ensure left border for visual separation within rows */
+         /* @apply border-l dark:border-l-dark-border border-l-gray-300; */
+    }
+    /* First cell in a row shouldn't have left border */
+    .subnet-table td:first-child {
+         /* @apply border-l-0; */
+    }
+
+     .cell-name, .cell-divide {
+         @apply font-sans;
+     }
+     .cell-hosts {
+         @apply text-right;
+     }
+     .cell-divide {
+         @apply text-center;
+     }
+
+      /* --- Join Hierarchy Cells --- */
+     .cell-join { /* Base style for ALL join cells (placeholders and clickable) */
+         @apply text-center align-middle font-mono text-xs;
+         @apply border-l dark:border-l-dark-border border-l-gray-300; /* Vertical dividers */
+     }
+     /* Style for the clickable, spanning cells */
+     .cell-join-placeholder {
+        @apply dark:bg-dark-tertiary/25 bg-gray-100/70;
+        @apply dark:text-dark-text_secondary text-gray-600;
+        @apply hover:dark:bg-dark-accent_green/40 hover:bg-green-200/50 cursor-pointer; /* Clickable indication */
+        transition: background-color 0.15s ease-in-out;
+        /* Add slash using pseudo-element */
+        position: relative; /* Needed for pseudo-element positioning */
+     }
+      /* Add the slash content */
+      .cell-join-placeholder:before {
+        content: attr(data-mask-level); /* Use data attribute for mask level */
+        @apply absolute inset-0 flex items-center justify-center;
+      }
+
+     /* Style for the empty padding cells (level >= subnet mask) */
+     .cell-join-pad {
+        @apply border-l dark:border-l-dark-border border-l-gray-300;
+        @apply bg-transparent;
+     }
+
+    /* --- Resizing Handle --- */
+     .th-resize-handle {
+         @apply absolute top-0 right-0 bottom-0 w-2 cursor-col-resize z-10;
+         background-image: linear-gradient(to right, transparent 40%, theme('colors.dark.border') 40%, theme('colors.dark.border') 100%);
+         background-repeat: no-repeat; background-position: right;
+         opacity: 0.4; transition: opacity 0.2s ease-in-out;
+     }
+     .th-resize-handle:hover,
+     .th-resize-handle:active {
+          opacity: 1;
+          background-image: linear-gradient(to right, transparent 30%, theme('colors.dark.accent_blue') 30%, theme('colors.dark.accent_blue') 100%);
+      }
+
+    /* Inputs/Buttons */
+      input[type="text"].subnet-name-input {
+          @apply w-full h-full px-1 border-none focus:ring-0 bg-transparent text-sm dark:text-dark-text_primary text-gray-900 placeholder-gray-500 font-sans focus:outline-none;
+      }
+      button.divide-button {
+         @apply p-1 rounded hover:opacity-75 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed font-sans text-blue-600 dark:text-dark-accent_blue inline-flex items-center justify-center;
+      }
+
+    /* Config section inputs focus (no change) */
+    input[type="text"].config-input, input[type="number"].config-input { @apply focus:ring-2 focus:ring-offset-1 dark:focus:ring-offset-dark-secondary focus:ring-dark-accent_blue focus:outline-none border focus:border-transparent; }
+    input[type="checkbox"].config-checkbox { @apply focus:ring-dark-accent_blue focus:ring-offset-0; }
+}
+
+/* Base header class needs to be defined if used */
+.header-base {
+    @apply text-left text-xs font-semibold uppercase tracking-wider relative align-middle;
+    @apply dark:bg-dark-tertiary dark:text-dark-text_secondary bg-gray-100 text-gray-600;
+    @apply border-b-2 dark:border-b-dark-border border-b-gray-300;
+}
